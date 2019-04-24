@@ -1,5 +1,6 @@
 # One away
 
+# O(n) - where n is the length of the shorter string
 def one_away(str1, str2):
     i = 0
     j = 0
