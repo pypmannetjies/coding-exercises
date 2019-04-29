@@ -1,4 +1,5 @@
-# String compression
+# String compression - replace repeated characters with the character and the count e.g. aaa becomes a3
+# If the compressed string is longer than the original, the original must be returned
 
 # O(n) - iterates through string once
 # +n for converting list to string

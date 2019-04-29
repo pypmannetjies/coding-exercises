@@ -1,4 +1,6 @@
 # One away
+# Given 3 types of edits that can be performed on strings - insert, remove or replace a character
+# Is a string 1 edit away from another?
 
 # O(n) - where n is the length of the shorter string
 def one_away(str1, str2):

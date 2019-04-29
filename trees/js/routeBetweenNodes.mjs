@@ -1,30 +1,10 @@
 // Depth first search and breadth first search to determine whether a directed graph has a path
 // from one node to another
 
+import Graph from './structures/graph/Graph'
+import Node from './structures/graph/Node'
+
 // Graph setup
-
-class Graph {
-  constructor () {
-    this.nodes = []
-  }
-}
-
-class Node {
-  constructor (name) {
-    this.name = name
-    this.adjacent = []
-    this.visited = false
-  }
-}
-
-const graph = new Graph()
-
-const a = new Node('A')
-const b = new Node('B')
-const c = new Node('C')
-const d = new Node('D')
-const e = new Node('E')
-const f = new Node('F')
 
 //      +---+     +---+     +---+
 // +--->+ B +<----+ A +---->+ C +---+
@@ -39,6 +19,15 @@ const f = new Node('F')
 // |    +-+-+     +---+             |
 // +----+ E +---->+ F +<------------+
 //      +---+     +---+
+
+const graph = new Graph()
+
+const a = new Node('A')
+const b = new Node('B')
+const c = new Node('C')
+const d = new Node('D')
+const e = new Node('E')
+const f = new Node('F')
 
 a.adjacent = [b, c]
 b.adjacent = [d]

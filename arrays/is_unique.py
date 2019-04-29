@@ -1,4 +1,4 @@
-# Is Unique
+# Is unique - Does a string have all unique characters?
 
 # Brute force - O(n^2)
 def is_unique(s):

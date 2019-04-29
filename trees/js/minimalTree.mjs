@@ -1,25 +1,7 @@
-/* eslint-disable no-unused-vars */
-/**
- * Minimal tree
- *
- * Critical information:
- *
- * * Items are unique
- * * Integers only
- * * Array has already been sorted - increasing order
- */
+// Minimal tree - create a binary search tree of minimal height from a sorted array of unique integers
 
-const printBinaryTree = require('./printBinaryTree')
-
-class Node {
-  constructor (value) {
-    this.left = null
-    this.right = null
-    this.value = value
-  }
-}
-
-const testArray = [0, 4, 6, 7, 8, 9]
+import printBinaryTree from './utilities/printBinaryTree'
+import Node from './structures/binarySearchTree/Node.mjs'
 
 function createMinTree (arr) {
   const pivot = Math.floor(arr.length / 2)
@@ -39,5 +21,7 @@ function createMinTree (arr) {
 
   return root
 }
+
+const testArray = [0, 4, 6, 7, 8, 9]
 
 printBinaryTree(createMinTree(testArray))

@@ -1,11 +1,4 @@
-/* eslint-disable no-unused-vars */
-class Node {
-  constructor (value) {
-    this.value = value
-    this.left = null
-    this.right = null
-  }
-}
+import Node from '../structures/binarySearchTree/Node.mjs'
 
 function printBinaryTree (node) {
   const depth = getDepth(node, 0)
@@ -37,19 +30,20 @@ function printBinaryTree (node) {
   }
 
   let lastDepth = -1
-  nodesToPrint.forEach((item, index) => {
+  for (const item of nodesToPrint) {
     if (item.depth !== lastDepth) {
       lastDepth = item.depth
-      str += '\n' + getSpaces(Math.pow(2, depth - item.depth - 1)) + item.node.value
+      str += '\n' + getSpaces(depth, item.depth + 1) + item.node.value
     } else {
-      str += getSpaces(Math.pow(2, depth - item.depth)) + item.node.value
+      str += getSpaces(depth, item.depth) + item.node.value
     }
-  })
+  }
 
   console.log(str)
 }
 
-function getSpaces (numSpaces) {
+function getSpaces (totalDepth, currentDepth) {
+  const numSpaces = Math.pow(2, totalDepth - currentDepth) - 1
   return ' '.repeat(numSpaces)
 }
 
@@ -63,7 +57,7 @@ function getDepth (node, sum) {
   return rightDepth + 1
 }
 
-module.exports = printBinaryTree
+export default printBinaryTree
 
 // Tests
 
@@ -89,4 +83,4 @@ g.left = i
 // console.log(getDepth(a, 0)) // 5
 // console.log(getDepth(c, 0)) // 2
 
-// printBinaryTree(i, 5, 0)
+// printBinaryTree(a, 5, 0)

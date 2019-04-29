@@ -1,4 +1,5 @@
-# Palindrome Permutation
+# Palindrome Permutation - check if a string is a permutation of a palindrome
+
 # O(n) - list is traversed once, and characters placed in dictionary
 # Length of dictionary indicates whether characters in string were matched in parallel
 # If 1 is left, then that character can be at the middle of the string

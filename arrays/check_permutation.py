@@ -1,4 +1,4 @@
-# Is permutation
+# Check permutation - Is one string a permutation of another?
 
 # Hash table - O(n + n + n) - populate hash table, go through s2, go through table again at end = O(n)
 def is_perm(s1, s2):

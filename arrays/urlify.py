@@ -1,9 +1,10 @@
-# URLify
+# URLify - replace all spaces with %20 - extra spaces are added to the end of the string to accommodation
+# in-place substitution
 
 # In place - O(n)
 # String must be converted to array due to Strings being immutable in Python
-# Easier approach - just insert asa chars are copied into array
-# This approach follows the Java solution from the book
+# An easier approach would be to just insert the spaces as chars are copied into array
+# This approach follows a theoretically "in-place" solution for educational purposes
 def urlify(url, num_chars):
   url = list(url)
 
