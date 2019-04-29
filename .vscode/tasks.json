@@ -5,15 +5,32 @@
     "command": "node",
     "tasks": [
         {
-            "label": "Run open nodejs script",
+            "label": "Run open Nodejs script",
             "type": "shell",
             "command": "node",
-            "args": ["--experimental-modules", "${file}"],
+            "args": [
+                "--experimental-modules",
+                "${file}"
+            ],
             "group": "test",
             "presentation": {
                 "reveal": "always",
-                "panel": "new"
+                "panel": "dedicated"
             }
+        },
+        {
+            "label": "Run open Python script",
+            "type": "shell",
+            "command": "python3",
+            "args": [
+                "${file}"
+            ],
+            "group": "test",
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            },
+            "problemMatcher": []
         }
     ]
 }
