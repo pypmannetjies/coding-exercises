@@ -1,57 +1,69 @@
 import Node from '../structures/binarySearchTree/Node.mjs'
 
 function printBinaryTree (node) {
-  const depth = getDepth(node, 0)
+  const height = getHeight(node, 0)
   let str = ''
-  let currentNode = node
+  let currentNode
   let currentIndex = 0
-  let nodesToPrint = []
-  let currentDepth = 0
-  nodesToPrint.push({ depth: currentDepth, node: currentNode })
+  let currentDepth
+  let previousDepth = -1
+  const listOfNextNodes = [node]
+  const listOfNodeDepths = [0]
+
   while (true) {
-    if (currentNode.left || currentNode.right) {
-      currentDepth++
-    }
+    if (currentIndex >= listOfNextNodes.length) break
 
-    if (currentNode.left && !currentNode.left.visited) {
-      currentNode.left.visited = true
-      nodesToPrint.push({ depth: currentDepth, node: currentNode.left })
-    }
+    currentDepth = listOfNodeDepths[currentIndex]
+    currentNode = listOfNextNodes[currentIndex++]
 
-    if (currentNode.right && !currentNode.right.visited) {
-      currentNode.right.visited = true
-      nodesToPrint.push({ depth: currentDepth, node: currentNode.right })
-    }
-
-    if (currentIndex >= nodesToPrint.length) break
-
-    currentDepth = nodesToPrint[currentIndex].depth
-    currentNode = nodesToPrint[currentIndex++].node
-  }
-
-  let lastDepth = -1
-  for (const item of nodesToPrint) {
-    if (item.depth !== lastDepth) {
-      lastDepth = item.depth
-      str += '\n' + getSpaces(depth, item.depth + 1) + item.node.value
+    if (currentDepth !== previousDepth) {
+      previousDepth = currentDepth
+      str += '\n' + getSpaces(height, currentDepth + 1)
     } else {
-      str += getSpaces(depth, item.depth) + item.node.value
+      str += getSpaces(height, currentDepth)
+    }
+
+    if (currentNode == null) {
+      str += '*'
+      continue
+    } else {
+      str += currentNode.value
+    }
+
+    if (!currentNode.left && currentNode.right) {
+      listOfNextNodes.push(null)
+      listOfNodeDepths.push(currentDepth + 1)
+    }
+
+    if (currentNode.left && !listOfNextNodes.includes(currentNode.left)) {
+      listOfNextNodes.push(currentNode.left)
+      listOfNodeDepths.push(currentDepth + 1)
+    }
+
+    if (!currentNode.right && currentNode.left) {
+      listOfNextNodes.push(null)
+      listOfNodeDepths.push(currentDepth + 1)
+    }
+
+    if (currentNode.right && !listOfNextNodes.includes(currentNode.right)) {
+      listOfNextNodes.push(currentNode.right)
+      listOfNodeDepths.push(currentDepth + 1)
     }
   }
 
   console.log(str)
 }
 
-function getSpaces (totalDepth, currentDepth) {
-  const numSpaces = Math.pow(2, totalDepth - currentDepth) - 1
+function getSpaces (height, currentDepth) {
+  const numSpaces = Math.pow(2, height - currentDepth) - 1
   return ' '.repeat(numSpaces)
 }
 
-function getDepth (node, sum) {
+function getHeight (node, sum) {
   if (node === null) return 0
 
-  const leftDepth = getDepth(node.left, sum)
-  const rightDepth = getDepth(node.right, sum)
+  const leftDepth = getHeight(node.left, sum)
+  const rightDepth = getHeight(node.right, sum)
 
   if (leftDepth > rightDepth) return leftDepth + 1
   return rightDepth + 1
@@ -80,7 +92,10 @@ d.left = g
 d.right = h
 g.left = i
 
-// console.log(getDepth(a, 0)) // 5
-// console.log(getDepth(c, 0)) // 2
+// console.log(getHeightBetween(a, a)) // 0
+// console.log(getHeightBetween(a, i)) // 4
+// console.log(getHeightBetween(a, c)) // 1
 
-// printBinaryTree(a, 5, 0)
+// printBinaryTree(a)
+// printBinaryTree(f)
+// printBinaryTree(d)
